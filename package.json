@@ -18,9 +18,11 @@
     "framer-motion": "^10.16.5",
     "langchain": "^0.0.192",
     "openai": "^4.19.0",
+    "play-sound": "^1.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-webcam": "^7.2.0"
+    "react-webcam": "^7.2.0",
+    "sound-play": "^1.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

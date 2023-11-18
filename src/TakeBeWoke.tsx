@@ -92,7 +92,7 @@ const TakeBeWoke: React.FC<TakeBeWokeProps> = ({ base64, setBase64, result, setR
               },
             ],
           });
-
+        console.log("making API Call")
           const res = await chat.invoke([message]);
           setResult(res.content.toString());
         } else {
@@ -116,6 +116,7 @@ const TakeBeWoke: React.FC<TakeBeWokeProps> = ({ base64, setBase64, result, setR
     <Flex flexDirection="column" alignItems="center" justifyContent={"center"} justifyItems={"center"}>
       {/* <Button onClick={() => setFacingMode((prevState) => (prevState === "user" ? "environment" : "user"))}>Switch Camera</Button> */}
       <br />
+      <Heading>{result}</Heading>
       <Box mx="20px" overflow={"hidden"} borderRadius={"10px"} maxW={"350px"}>
         {capturedImage ? (
           <img src={capturedImage} alt="Captured" width={"100%"} />
