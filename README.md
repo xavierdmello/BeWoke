@@ -1,6 +1,6 @@
 # BeWoke
 
-_**Morning alarms got like this?**_
+_**Morning alarms got you like this?**_
 
 <img src="https://github.com/xavierdmello/BeWoke/assets/18093763/1947a95d-1734-469a-867a-4ee093ec3cbb" width=250px/>
 
