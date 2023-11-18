@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { HumanMessage } from "langchain/schema";
-import { Button } from "@chakra-ui/react";
+import { Button, Input, Heading } from "@chakra-ui/react";
 
 import Webcam from "react-webcam";
 
@@ -38,6 +38,7 @@ function App() {
   const [result, setResult] = useState<string>("");
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [facingMode, setFacingMode] = useState<"user" | "environment">("environment");
+  const [task, setTask] = useState<string>("");
   const webcamRef = useRef<Webcam>(null);
 
   const videoConstraints = {
@@ -101,8 +102,8 @@ const capture = useCallback(() => {
 
   return (
     <div>
-      <h1>{result}</h1>
-
+      <Heading>{result}</Heading>
+      <Input type='text' value={task} onChange={(e) => setTask(e.target.value)}/>
       {capturedImage ? <Button onClick={() => setCapturedImage(null)}>Retake photo</Button> : <Button onClick={capture}>Capture photo</Button>}
 
       <Button onClick={() => setFacingMode((prevState) => (prevState === "user" ? "environment" : "user"))}>Switch Camera</Button>

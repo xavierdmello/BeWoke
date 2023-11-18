@@ -12,6 +12,13 @@ Inspiried by BeReal, BeWoke has a gamified social aspect to it. After you post y
 
 In the future there could be prizes for most improved or most consistient sleep schedule, similar to BeReal's [Realest Person on Earth](https://www.realestpersononearth.com/) competition, where people compete to have the most epic BeReals, and win a cash prize or a trip around the world.
 
+Random Notes:
+- If we can socially shame people into waking up on time, what else can we socially shame them into doing?
+- Productivity
+- Voting
+- Etc.
+- This app can go a long way! Alarms are just the beginning.
+
 Tech Stack:
 - React
 - Chakra UI
