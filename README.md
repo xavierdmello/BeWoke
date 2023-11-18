@@ -1,30 +1,9 @@
-# React + TypeScript + Vite
+# BeWoke
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Have trouble waking up in the morning?
 
-Currently, two official plugins are available:
+BeWoke is a better alarm. Briefly tell the app the first thing you're going to do next morning, and then watch in horror as the alarm doesn't turn off until you take a picture of yourself doing that exact thing the next morning.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Inspiried by BeReal, BeWoke has a gamified social aspect to it. After you post your morning check-in, you also see your friends' check-ins. You gain points for waking up on time.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+In the future there could be prizes for most improved or most consistient sleep schedule, similar to BeReal's [Realest Person on Earth](https://www.realestpersononearth.com/) competition, where people compete to have the most epic BeReals, and win a cash prize or a trip around the world.
