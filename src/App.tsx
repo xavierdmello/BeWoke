@@ -27,13 +27,7 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    if (alarmSet) {
-      audio.volume = 1;
-    } else {
-      audio.volume = 0;
-    }
-  }, [alarmSet])
+
 
   useEffect(() => {
     const interval = setInterval(() => {
