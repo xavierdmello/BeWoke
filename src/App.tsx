@@ -28,7 +28,6 @@ function App() {
   }, []);
 
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       const currentTime = new Date();
