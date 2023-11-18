@@ -71,12 +71,11 @@ const capture = useCallback(() => {
     async function runEffect() {
       if (base64) {
         if (await isBase64UrlImage(base64.toString())) {
-          console.log("Creating message");
           const message = new HumanMessage({
             content: [
               {
                 type: "text",
-                text: "What's in this image?",
+                text: `The user said that they would '${task}' today. Does this image depict that, or include objects related to what they said they would do? Respond in a one word answer, yes or no. If you don't know, just say no. Example: 'brush teeth'. With this example, if image appears to be in a bathroom or has a toothbrush in it, you would say yes. Otherwise, no. Never answer anything other than yes or no.`,
               },
               {
                 type: "image_url",
@@ -89,6 +88,8 @@ const capture = useCallback(() => {
 
           const res = await chat.invoke([message]);
           setResult(res.content.toString());
+
+ 
         } else {
           console.error("Not an image");
         }
@@ -99,6 +100,14 @@ const capture = useCallback(() => {
 
     runEffect();
   }, [base64]);
+
+  useEffect(() => {
+    if (!capturedImage) {
+      setResult("");
+    }
+
+  },[capturedImage])
+
 
   return (
     <div>
