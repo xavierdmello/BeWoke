@@ -16,7 +16,6 @@ function App() {
   const [alarmSet, setAlarmSet] = useState<boolean>(false);
   const [audio] = useState(new Audio(alarm));
 
-
   useEffect(() => {
     alarmSet ? audio.play() : audio.pause();
   }, [alarmSet]);
@@ -27,6 +26,14 @@ function App() {
       audio.removeEventListener("ended", () => setAlarmSet(false));
     };
   }, []);
+
+  useEffect(() => {
+    if (alarmSet) {
+      audio.volume = 1;
+    } else {
+      audio.volume = 0;
+    }
+  }, [alarmSet])
 
   useEffect(() => {
     const interval = setInterval(() => {
