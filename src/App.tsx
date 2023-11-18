@@ -36,6 +36,7 @@ async function isBase64UrlImage(base64String: string) {
 function App() {
   const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
   const [result, setResult] = useState<string>("");
+  const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [facingMode, setFacingMode] = useState<"user" | "environment">("environment");
   const webcamRef = useRef<Webcam>(null);
 
@@ -48,9 +49,10 @@ function App() {
 const capture = useCallback(() => {
   const imageSrc = webcamRef.current?.getScreenshot();
   if (imageSrc) {
+    setCapturedImage(imageSrc);
     const image = new Image();
     image.src = imageSrc;
-    image.onload = () => {
+    image.onload = () => {  
       const canvas = document.createElement("canvas");
       canvas.width = image.width;
       canvas.height = image.height;
@@ -102,7 +104,11 @@ const capture = useCallback(() => {
       <h1>{result}</h1>
       <Button onClick={capture}>Capture photo</Button>
       <Button onClick={() => setFacingMode((prevState) => (prevState === "user" ? "environment" : "user"))}>Switch Camera</Button>
-      <Webcam audio={false} height={640} ref={webcamRef} screenshotFormat="image/jpeg" width={480} videoConstraints={videoConstraints} />
+      {capturedImage ? (
+        <img src={capturedImage} alt="Captured" />
+      ) : (
+        <Webcam audio={false} height={640} ref={webcamRef} screenshotFormat="image/jpeg" width={480} videoConstraints={videoConstraints} />
+      )}
     </div>
   );
 }
