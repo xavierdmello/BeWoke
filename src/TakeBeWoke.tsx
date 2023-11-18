@@ -117,7 +117,7 @@ const TakeBeWoke: React.FC<TakeBeWokeProps> = ({ base64, setBase64, result, setR
 
       <Button onClick={() => setFacingMode((prevState) => (prevState === "user" ? "environment" : "user"))}>Switch Camera</Button>
 
-      <Box mx="50px" overflow={"hidden"} borderRadius={"10px"}>
+      <Box mx="20px" overflow={"hidden"} borderRadius={"10px"}>
         {capturedImage ? (
           <img src={capturedImage} alt="Captured" width={"100%"} />
         ) : (
