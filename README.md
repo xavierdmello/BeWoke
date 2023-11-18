@@ -19,3 +19,7 @@ Tech Stack:
 - Typescript
 - LangChain
 - OpenAi GPT-4-Vision
+
+Useful tutorials I used for learning LangChain:
+- Basic tutorial: https://www.youtube.com/watch?v=mAYS4d0hrek
+- LangChain with GPT-4-Vision: https://www.youtube.com/watch?v=IZGBshGqB3g
