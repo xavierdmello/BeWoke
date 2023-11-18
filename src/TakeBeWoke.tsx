@@ -16,7 +16,7 @@ const chat = new ChatOpenAI({
   maxTokens: 1024,
   openAIApiKey: OPENAI_API_KEY,
 });
-
+// hi
 async function isBase64UrlImage(base64String: string) {
   let image = new Image();
   image.src = base64String;
