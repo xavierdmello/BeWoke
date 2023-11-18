@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { HumanMessage } from "langchain/schema";
+import Webcam from "react-webcam";
 
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
-// const imageData = await fs.readFile("./hotdog.jpg");
 const chat = new ChatOpenAI({
   modelName: "gpt-4-vision-preview",
   maxTokens: 1024,
@@ -34,6 +34,7 @@ async function isBase64UrlImage(base64String: string) {
 function App() {
   const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
   const [result, setResult] = useState<string>("");
+  const webcamRef = useRef<Webcam>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -46,13 +47,22 @@ function App() {
     }
   };
 
+  const videoConstraints = {
+    width: 480,
+    height: 640,
+    facingMode: "user",
+  };
+
+  const capture = useCallback(() => {
+    const imageSrc = webcamRef.current?.getScreenshot();
+    // Do something with the imageSrc
+  }, [webcamRef]);
+
   useEffect(() => {
     async function runEffect() {
       if (base64) {
         if (await isBase64UrlImage(base64.toString())) {
-  
-      
-          console.log("Creating message")
+          console.log("Creating message");
           const message = new HumanMessage({
             content: [
               {
@@ -67,20 +77,15 @@ function App() {
               },
             ],
           });
-          
-          console.log("Message created")
 
-          console.log("Making API call")
           const res = await chat.invoke([message]);
           setResult(res.content.toString());
-          console.log("Api call done")
         } else {
-          console.error("Not an image")
+          console.error("Not an image");
         }
-      } else{
-        console.error("No base64")
+      } else {
+        console.error("No base64");
       }
-      
     }
 
     runEffect();
@@ -89,9 +94,9 @@ function App() {
   return (
     <div>
       <input type="file" accept="image/png" onChange={handleFileChange} />
-
       <h1>{result}</h1>
-      {base64 && <img src={base64.toString()} alt="Converted to Base64" />}
+      <button onClick={capture}>Capture photo</button>
+      <Webcam audio={false} height={640} ref={webcamRef} screenshotFormat="image/jpeg" width={480} videoConstraints={videoConstraints} />
     </div>
   );
 }
