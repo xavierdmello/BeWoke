@@ -43,7 +43,7 @@ function App() {
       const alarmHour = parseInt(alarmTime.split(":")[0]);
       const alarmMinutes = parseInt(alarmTime.split(":")[1]);
 
-      if (currentMinutes === alarmMinutes) {
+      if (currentMinutes === alarmMinutes && result !== "yes" && result !== "Yes" && result !== "yes." && result !== "Yes.") {
         setAlarmSet(true);
         setMenu("takebewoke");
       }
@@ -52,7 +52,7 @@ function App() {
     return () => {
       clearInterval(interval);
     };
-  }, [alarmTime]);
+  }, [alarmTime, result ]);
 
 
 
