@@ -4,125 +4,24 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { HumanMessage } from "langchain/schema";
-import { Button, Input, Heading } from "@chakra-ui/react";
-
-import Webcam from "react-webcam";
-
+import { Button, Input, Heading, Flex } from "@chakra-ui/react";
+import TakeBeWoke from "./TakeBeWoke";
+import Header from "./Header";
+import SetAlarm from "./SetAlarm"
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
-const chat = new ChatOpenAI({
-  modelName: "gpt-4-vision-preview",
-  maxTokens: 1024,
-  openAIApiKey: OPENAI_API_KEY,
-});
-
-async function isBase64UrlImage(base64String: string) {
-  let image = new Image();
-  image.src = base64String;
-  return await new Promise((resolve) => {
-    image.onload = function () {
-      if (image.height === 0 || image.width === 0) {
-        resolve(false);
-        return;
-      }
-      resolve(true);
-    };
-    image.onerror = () => {
-      resolve(false);
-    };
-  });
-}
-
 function App() {
-  const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
-  const [result, setResult] = useState<string>("");
-  const [capturedImage, setCapturedImage] = useState<string | null>(null);
-  const [facingMode, setFacingMode] = useState<"user" | "environment">("environment");
-  const [task, setTask] = useState<string>("");
-  const webcamRef = useRef<Webcam>(null);
+    const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
+    const [result, setResult] = useState<string>("");
+    const [capturedImage, setCapturedImage] = useState<string | null>(null);
+    const [task, setTask] = useState<string>("");
+    const [menu, setMenu] = useState<string>("takebewoke");
 
-  const videoConstraints = {
-    width: 480,
-    height: 640,
-    facingMode: facingMode,
-  };
-
-const capture = useCallback(() => {
-  const imageSrc = webcamRef.current?.getScreenshot();
-  if (imageSrc) {
-    setCapturedImage(imageSrc);
-    const image = new Image();
-    image.src = imageSrc;
-    image.onload = () => {  
-      const canvas = document.createElement("canvas");
-      canvas.width = image.width;
-      canvas.height = image.height;
-      const ctx = canvas.getContext("2d");
-      if (ctx) {
-        ctx.drawImage(image, 0, 0);
-        const base64Image = canvas.toDataURL("image/jpeg");
-        setBase64(base64Image);
-      }
-    };
-  }
-}, [webcamRef]);
-
-  useEffect(() => {
-    async function runEffect() {
-      if (base64) {
-        if (await isBase64UrlImage(base64.toString())) {
-          const message = new HumanMessage({
-            content: [
-              {
-                type: "text",
-                text: `The user said that they would '${task}' today. Does this image depict that, or include objects related to what they said they would do? Respond in a one word answer, yes or no. If you don't know, just say no. Example: 'brush teeth'. With this example, if image appears to be in a bathroom or has a toothbrush in it, you would say yes. Otherwise, no. Never answer anything other than yes or no.`,
-              },
-              {
-                type: "image_url",
-                image_url: {
-                  url: `data:image/jpeg;base64,${base64.toString().split(",")[1]}`,
-                },
-              },
-            ],
-          });
-
-          const res = await chat.invoke([message]);
-          setResult(res.content.toString());
-
- 
-        } else {
-          console.error("Not an image");
-        }
-      } else {
-        console.error("No base64");
-      }
-    }
-
-    runEffect();
-  }, [base64]);
-
-  useEffect(() => {
-    if (!capturedImage) {
-      setResult("");
-    }
-
-  },[capturedImage])
-// bla
-
-  return (
-    <div>
-      <Heading>{result}</Heading>
-      <Input type='text' value={task} onChange={(e) => setTask(e.target.value)}/>
-      {capturedImage ? <Button onClick={() => setCapturedImage(null)}>Retake photo</Button> : <Button onClick={capture}>Capture photo</Button>}
-
-      <Button onClick={() => setFacingMode((prevState) => (prevState === "user" ? "environment" : "user"))}>Switch Camera</Button>
-      {capturedImage ? (
-        <img src={capturedImage} alt="Captured" />
-      ) : (
-        <Webcam audio={false} height={640} ref={webcamRef} screenshotFormat="image/jpeg" width={480} videoConstraints={videoConstraints} />
-      )}
-    </div>
-  );
+  return <Flex flexDirection={"column"} backgroundColor={"black"} height={"100vh"} mx="auto" alignItems={"center"} maxWidth={"700px"} width={"100%"} borderX={"1px solid gray "}>
+    <Header/>
+      {menu == "takebewoke" && <TakeBeWoke base64={base64} setBase64={setBase64} result={result} setResult={setResult} capturedImage={capturedImage} setCapturedImage={setCapturedImage} task={task} setTask={setTask}/>}
+      {menu == "setalarm" && <SetAlarm/>}
+  </Flex>;
 }
 
 export default App;
