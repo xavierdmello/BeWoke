@@ -102,7 +102,9 @@ const capture = useCallback(() => {
   return (
     <div>
       <h1>{result}</h1>
-      <Button onClick={capture}>Capture photo</Button>
+
+      {capturedImage ? <Button onClick={() => setCapturedImage(null)}>Retake photo</Button> : <Button onClick={capture}>Capture photo</Button>}
+
       <Button onClick={() => setFacingMode((prevState) => (prevState === "user" ? "environment" : "user"))}>Switch Camera</Button>
       {capturedImage ? (
         <img src={capturedImage} alt="Captured" />
