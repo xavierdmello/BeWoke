@@ -107,7 +107,7 @@ const capture = useCallback(() => {
     }
 
   },[capturedImage])
-
+// bla
 
   return (
     <div>
