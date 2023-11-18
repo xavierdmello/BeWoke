@@ -39,27 +39,30 @@ function App() {
   const [facingMode, setFacingMode] = useState<"user" | "environment">("environment");
   const webcamRef = useRef<Webcam>(null);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setBase64(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const videoConstraints = {
     width: 480,
     height: 640,
     facingMode: facingMode,
   };
 
-  const capture = useCallback(() => {
-    const imageSrc = webcamRef.current?.getScreenshot();
-    // Do something with the imageSrc
-  }, [webcamRef]);
+const capture = useCallback(() => {
+  const imageSrc = webcamRef.current?.getScreenshot();
+  if (imageSrc) {
+    const image = new Image();
+    image.src = imageSrc;
+    image.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        ctx.drawImage(image, 0, 0);
+        const base64Image = canvas.toDataURL("image/jpeg");
+        setBase64(base64Image);
+      }
+    };
+  }
+}, [webcamRef]);
 
   useEffect(() => {
     async function runEffect() {
@@ -96,7 +99,6 @@ function App() {
 
   return (
     <div>
-      <input type="file" accept="image/png" onChange={handleFileChange} />
       <h1>{result}</h1>
       <Button onClick={capture}>Capture photo</Button>
       <Button onClick={() => setFacingMode((prevState) => (prevState === "user" ? "environment" : "user"))}>Switch Camera</Button>
