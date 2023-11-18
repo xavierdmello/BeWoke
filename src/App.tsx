@@ -4,6 +4,8 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { HumanMessage } from "langchain/schema";
+import { Button } from "@chakra-ui/react";
+
 import Webcam from "react-webcam";
 
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
@@ -34,6 +36,7 @@ async function isBase64UrlImage(base64String: string) {
 function App() {
   const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
   const [result, setResult] = useState<string>("");
+  const [facingMode, setFacingMode] = useState<"user" | "environment">("environment");
   const webcamRef = useRef<Webcam>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +53,7 @@ function App() {
   const videoConstraints = {
     width: 480,
     height: 640,
-    facingMode: "user",
+    facingMode: facingMode,
   };
 
   const capture = useCallback(() => {
@@ -95,7 +98,8 @@ function App() {
     <div>
       <input type="file" accept="image/png" onChange={handleFileChange} />
       <h1>{result}</h1>
-      <button onClick={capture}>Capture photo</button>
+      <Button onClick={capture}>Capture photo</Button>
+      <Button onClick={() => setFacingMode((prevState) => (prevState === "user" ? "environment" : "user"))}>Switch Camera</Button>
       <Webcam audio={false} height={640} ref={webcamRef} screenshotFormat="image/jpeg" width={480} videoConstraints={videoConstraints} />
     </div>
   );
