@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@tabler/icons-react": "^2.41.0",
     "framer-motion": "^10.16.5",
     "langchain": "^0.0.192",
     "openai": "^4.19.0",

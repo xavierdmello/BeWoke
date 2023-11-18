@@ -4,9 +4,10 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { HumanMessage } from "langchain/schema";
-import { Button, Input, Heading, Flex, Box} from "@chakra-ui/react";
+import { Button, Input, Heading, Flex, Box, IconButton, Divider} from "@chakra-ui/react";
 
 import Webcam from "react-webcam";
+import { IconCircle } from "@tabler/icons-react";
 
 const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
@@ -112,18 +113,21 @@ const TakeBeWoke: React.FC<TakeBeWokeProps> = ({ base64, setBase64, result, setR
   }, [capturedImage]);
 
   return (
-    <Flex flexDirection="column" alignItems="center">
-      {capturedImage ? <Button onClick={() => setCapturedImage(null)}>Retake photo</Button> : <Button onClick={capture}>Capture photo</Button>}
-
-      <Button onClick={() => setFacingMode((prevState) => (prevState === "user" ? "environment" : "user"))}>Switch Camera</Button>
-
+    <Flex flexDirection="column" alignItems="center" justifyContent={"center"} justifyItems={"center"}>
+      {/* <Button onClick={() => setFacingMode((prevState) => (prevState === "user" ? "environment" : "user"))}>Switch Camera</Button> */}
+      <br />
+      <br />
       <Box mx="20px" overflow={"hidden"} borderRadius={"10px"}>
         {capturedImage ? (
           <img src={capturedImage} alt="Captured" width={"100%"} />
         ) : (
-          <Webcam  audio={false} ref={webcamRef} screenshotFormat="image/jpeg" width={"100%"} videoConstraints={videoConstraints} />
+          <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" width={"100%"} videoConstraints={videoConstraints} />
         )}
       </Box>
+
+      <br />
+      <br />
+      <IconCircle color={"white"} onClick={capture} size={"90px"} />
     </Flex>
   );
 };
