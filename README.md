@@ -1,4 +1,5 @@
 # BeWoke
+<sub>This was an app I made in a few hours for the [Entreprenuer First](https://www.joinef.com/) hackathon, where I won **first place!**</sub>
 
 _**Morning alarms got you like this?**_
 
@@ -11,6 +12,8 @@ BeWoke is a better alarm. Briefly tell the app the first thing you're doing next
 Inspiried by BeReal, BeWoke has a gamified social aspect to it. After you post your morning check-in, you also see your friends' check-ins. You gain points for waking up on time.
 
 In the future there could be prizes for most improved or most consistient sleep schedule, similar to BeReal's [Realest Person on Earth](https://www.realestpersononearth.com/) competition, where people compete to have the most epic BeReals, and win a cash prize or a trip around the world.
+
+
 
 Random Notes:
 - If we can socially shame people into waking up on time, what else can we socially shame them into doing?
