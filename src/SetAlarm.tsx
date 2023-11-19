@@ -26,8 +26,8 @@ const SetAlarm: React.FC<SetAlarmProps> = ({ task, setTask, alarmTime, setAlarmT
       {!result && 
       <SimpleGrid columns={1} spacing={4} mt="10px">
       {/* Replace the following Image components with your actual images */}
-      <Text fontSize="l" color="white">7 of your friends have already woken up!</Text>
-      <Text fontSize="2xl" color="white">Take a photo to see your friends waking up!</Text>
+      <Text fontSize="2xl" color="white">7 of your friends have already woken up!</Text>
+      <Text fontSize="3xl" color="white">Take a photo to see your friends waking up!</Text>
       <Text fontSize="xl" color="white">Sarah woke up at 7:23am</Text>
       <Text fontSize="s" color="white">Sarah: Wake up Xavier! We got a movie to go to at 8am!</Text>
       <Image src="https://img.freepik.com/free-vector/clear-blurred-background_1034-587.jpg" alt="Image 1" objectFit="cover" borderRadius="md" />
@@ -35,6 +35,11 @@ const SetAlarm: React.FC<SetAlarmProps> = ({ task, setTask, alarmTime, setAlarmT
       <Text fontSize="s" color="white">Amy: Wake up sleepyhead, we're waiting for you at school.</Text>
 
       <Image src="https://img.freepik.com/free-vector/clear-blurred-background_1034-587.jpg" alt="Image 2" objectFit="cover" borderRadius="md" />
+      <Text fontSize="xl" color="white">William woke up at 8:12am</Text>
+      <Text fontSize="s" color="white">William: LOL dude stop sleeping in</Text>
+
+      <Image src="https://img.freepik.com/free-vector/clear-blurred-background_1034-587.jpg" alt="Image 2" objectFit="cover" borderRadius="md" />
+      
       {/* Add more Image components as needed */}
     </SimpleGrid>}
       {result &&
@@ -50,7 +55,10 @@ const SetAlarm: React.FC<SetAlarmProps> = ({ task, setTask, alarmTime, setAlarmT
       <Text fontSize="s" color="white">Amy: Wake up sleepyhead, we're waiting for you at school.</Text>
 
         <Image src="https://josiegirlblog.com/wp-content/uploads/2022/08/Screen-Shot-2022-08-15-at-11.48.49-AM-614x1024.jpg" alt="Image 2" objectFit="cover" borderRadius="md" />
-        {/* Add more Image components as needed */}
+        <Text fontSize="xl" color="white">William woke up at 8:12am</Text>
+      <Text fontSize="s" color="white">William: LOL dude stop sleeping in</Text>
+        <Image src="https://www.boredpanda.com/blog/wp-content/uploads/2022/10/39-635fd45a12ad3__700.jpg" alt="Image 2" objectFit="cover" borderRadius="md" />
+         {/* Add more Image components as needed */}
       </SimpleGrid>}
     </Flex>
   );
