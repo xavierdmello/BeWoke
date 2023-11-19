@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+
 import { Flex } from "@chakra-ui/react";
-import TakeBeWoke from "./TakeBeWoke";
 import Header from "./Header";
 import SetAlarm from "./SetAlarm";
+import TakeBeWoke from "./TakeBeWoke";
 import alarm from "./assets/alarm.mp3"
-
 
 function App() {
   const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
@@ -89,6 +89,7 @@ function App() {
           setTask={setTask}
           alarmTime={alarmTime}
           setAlarmTime={setAlarmTime}
+          result={result}
         />
       )}
     </Flex>
