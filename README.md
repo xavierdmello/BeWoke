@@ -1,6 +1,11 @@
 # BeWoke
 <sub>This was an app I made in a few hours for the [Entreprenuer First](https://www.joinef.com/) hackathon, where I won **first place!**</sub>
 
+
+
+https://github.com/xavierdmello/BeWoke/assets/25058545/8e0857e4-1a21-4a49-aace-4d948eef29e0
+
+
 _**Morning alarms got you like this?**_
 
 <img src="https://github.com/xavierdmello/BeWoke/assets/18093763/1947a95d-1734-469a-867a-4ee093ec3cbb" width=250px/>
