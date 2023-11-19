@@ -13,6 +13,9 @@ interface SetAlarmProps {
 const SetAlarm: React.FC<SetAlarmProps> = ({ task, setTask, alarmTime, setAlarmTime, result }) => {
   return (
     <Flex flexDirection="column" alignItems="center">
+      <Text fontSize="xl" color="white">Make waking up fun everyday!</Text>
+      <br />
+
       <Heading fontSize="2xl" color="white" mt="10px">
         In the morning, I will:
       </Heading>
